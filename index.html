@@ -1,33 +1,59 @@
-<html>
+<html data-theme="dark">
   <head>
     <script
       defer
       src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
     ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
-    <div x-data="{elo1: '', elo2: '', winner: '1'}">
-      <div>Player 1 Starting ELO</div>
-      <div>
-        <input type="number" x-model="elo1" />
-      </div>
-      <div>Player 2 Starting ELO</div>
-      <div>
-        <input type="number" x-model="elo2" />
-      </div>
-      <label for="winner">Winner:</label>
-      <select name="winner" id="winner" x-model="winner">
-        <option value="1">Player 1</option>
-        <option value="0">Player 2</option>
-        <option value="0.5">Tie</option>
-      </select>
-      <div x-text="getNewElo(elo1,elo2,winner,'p1')"></div>
-      <div x-text="getNewElo(elo1,elo2,winner,'p2')"></div>
-    </div>
+    <main class="container" x-data="{elo1: '', elo2: '', winner: '1'}">
+      <article class="grid">
+        <div>
+          <div>Player 1 Starting ELO</div>
+          <div>
+            <input type="number" x-model="elo1" />
+          </div>
+        </div>
+        <div>
+          <div>Player 2 Starting ELO</div>
+          <div>
+            <input type="number" x-model="elo2" />
+          </div>
+        </div>
+      </article>
+      <article>
+        <label for="winner">Winner:</label>
+        <select name="winner" id="winner" x-model="winner">
+          <option value="1">Player 1</option>
+          <option value="0">Player 2</option>
+          <option value="0.5">Tie</option>
+        </select>
+      </article>
+      <article class="grid">
+        <div>
+          <div>Player 1 new ELO:</div>
+          <div x-text="getNewElo(elo1,elo2,winner,'p1')"></div>
+        </div>
+        <div>
+          <div>Player 2 new ELO:</div>
+          <div x-text="getNewElo(elo1,elo2,winner,'p2')"></div>
+        </div>
+      </article>
+    </main>
     <script>
-      function getNewElo(elo1, elo2, winner, whichP) {
+      function getNewElo(num1, num2, winner, whichP) {
+        let elo1 = parseFloat(num1);
+        let elo2 = parseFloat(num2);
+        if (isNaN(elo1) || isNaN(elo2)) {
+          return "";
+        }
         let expected = getExpected(elo1, elo2);
-        let change = getChange(winner, expected);
+        let change = parseFloat(getChange(winner, expected));
         if (whichP == "p1") {
           return elo1 + change;
         } else if (whichP == "p2") {
@@ -35,9 +61,6 @@
         } else return "";
       }
       function getExpected(num1, num2) {
-        if (isNaN(parseFloat(num1)) || isNaN(parseFloat(num2))) {
-          return "";
-        }
         let expected = parseFloat(num2) - parseFloat(num1);
         expected = expected / 400;
         expected = Math.pow(10, expected) + 1;
@@ -45,7 +68,7 @@
         return expected;
       }
       function getChange(winner, expected) {
-        return Math.round(32 * (winner - expected));
+        return Math.round(32 * (parseFloat(winner) - parseFloat(expected)));
       }
     </script>
   </body>

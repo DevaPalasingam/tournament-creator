@@ -12,6 +12,10 @@ Some day this project will be really cool. The main purpose for this project is 
 
 After doing a lot of googling, I've decided that I wanted to start this project with AlpineJS. My anticipation is that this project is not going to be very heavy, so I figured that I don't really need a full-on framework like React or Angular for very simple functionality. Also, AlpineJS seems perfect for someone who wants to be able to quickly pump out projects on a whim.
 
+### Pico.css
+
+This seems like a nice minimalist CSS framework.
+
 ## Future development
 
 - Change in ELO rating based on win/loss
