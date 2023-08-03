@@ -1,51 +1,52 @@
 <html>
-    <head>
-        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    </head>
-    <body>
-        <div x-data="{elo1: '', elo2: '', winner: '1'}">
-            <div>Player 1 Starting ELO</div>
-            <div>
-                <input type="number" x-model="elo1">
-            </div>
-            <div>Player 2 Starting ELO</div>
-            <div>
-                <input type="number" x-model="elo2">
-            </div>
-            <label for="winner">Winner:</label>
-            <select name="winner" id="winner" x-model="winner">
-                <option value="1">Player 1</option>
-                <option value="0">Player 2</option>
-                <option value="0.5">Tie</option>
-            </select>
-            <div x-text="getNewElo(elo1,elo2,winner,'p1')"></div>
-            <div x-text="getNewElo(elo1,elo2,winner,'p2')"></div>
-        </div>
-        <script>
-                function getNewElo(elo1, elo2, winner, whichP) {
-                    let expected = getExpected(elo1, elo2)
-                    let change = getChange(winner, expected)
-                    if (whichP == 'p1') {
-                        return elo1 + change
-                    }
-                    else if (whichP == 'p2') {
-                        return elo2 - change
-                    }
-                    else return ''
-                }                
-                function getExpected(num1, num2) {
-                    if (isNaN(parseFloat(num1)) || isNaN(parseFloat(num2))) {
-                        return ''
-                    }
-                    let expected = parseFloat(num2) - parseFloat(num1);
-                    expected = expected / 400
-                    expected = Math.pow(10, expected) + 1
-                    expected = 1 / expected
-                    return expected
-                }
-                function getChange(winner, expected) {
-                    return Math.round(32 * (winner - expected))
-                }
-        </script>
-    </body>
+  <head>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+  </head>
+  <body>
+    <div x-data="{elo1: '', elo2: '', winner: '1'}">
+      <div>Player 1 Starting ELO</div>
+      <div>
+        <input type="number" x-model="elo1" />
+      </div>
+      <div>Player 2 Starting ELO</div>
+      <div>
+        <input type="number" x-model="elo2" />
+      </div>
+      <label for="winner">Winner:</label>
+      <select name="winner" id="winner" x-model="winner">
+        <option value="1">Player 1</option>
+        <option value="0">Player 2</option>
+        <option value="0.5">Tie</option>
+      </select>
+      <div x-text="getNewElo(elo1,elo2,winner,'p1')"></div>
+      <div x-text="getNewElo(elo1,elo2,winner,'p2')"></div>
+    </div>
+    <script>
+      function getNewElo(elo1, elo2, winner, whichP) {
+        let expected = getExpected(elo1, elo2);
+        let change = getChange(winner, expected);
+        if (whichP == "p1") {
+          return elo1 + change;
+        } else if (whichP == "p2") {
+          return elo2 - change;
+        } else return "";
+      }
+      function getExpected(num1, num2) {
+        if (isNaN(parseFloat(num1)) || isNaN(parseFloat(num2))) {
+          return "";
+        }
+        let expected = parseFloat(num2) - parseFloat(num1);
+        expected = expected / 400;
+        expected = Math.pow(10, expected) + 1;
+        expected = 1 / expected;
+        return expected;
+      }
+      function getChange(winner, expected) {
+        return Math.round(32 * (winner - expected));
+      }
+    </script>
+  </body>
 </html>
