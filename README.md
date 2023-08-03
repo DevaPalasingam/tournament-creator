@@ -2,6 +2,8 @@
 
 A tool that you can use to run rated tournaments using the ELO rating system.
 
+Check it out [here](https://devapalasingam.github.io/tournament-creator/)!
+
 ## Description
 
 Some day this project will be really cool. The main purpose for this project is so that I can continue to develop my coding skills in a way that I find interesting. I also have a group of friends who enjoy random competitions like ping pong and chess. So I thought this might be an interesting idea.
