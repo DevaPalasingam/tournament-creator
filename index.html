@@ -37,11 +37,17 @@
       <article class="grid">
         <div>
           <div>Player 1 new ELO:</div>
-          <div x-text="getNewElo(elo1,elo2,winner,'p1')"></div>
+          <div
+            x-text="getNewElo(elo1,elo2,winner,'p1')"
+            class="newEloTxt"
+          ></div>
         </div>
         <div>
           <div>Player 2 new ELO:</div>
-          <div x-text="getNewElo(elo1,elo2,winner,'p2')"></div>
+          <div
+            x-text="getNewElo(elo1,elo2,winner,'p2')"
+            class="newEloTxt"
+          ></div>
         </div>
       </article>
     </main>
@@ -50,7 +56,7 @@
         let elo1 = parseFloat(num1);
         let elo2 = parseFloat(num2);
         if (isNaN(elo1) || isNaN(elo2)) {
-          return "";
+          return "...";
         }
         let expected = getExpected(elo1, elo2);
         let change = parseFloat(getChange(winner, expected));
