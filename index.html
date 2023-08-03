@@ -1,38 +1,26 @@
 <html>
-  <head>
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
-    ></script>
-  </head>
-  <body>
-
-    <div>Player 1 Starting ELO</div>
-    <div x-data="{ play1: '' }">
-        <input type="number" x-model="play1">
-     
-        <span x-text="play1">
-    </div>
-    <div>Player 2 Starting ELO</div>
-    <div x-data="{ play2: '' }">
-        <input type="number" x-model="play2">
-     
-        <span x-text="play2">
-    </div>
-
-    <div x-data="{ open: false }">
-        <button x-on:click="open = ! open">Winner</button>
-        
-        <div x-show="open">
-            Player 1
-        </div>
-        <div x-show="open">
-            Player 2
-        </div>
-        <div x-show="open">
-            Tie
-        </div>
-    </div>
-
-  </body>
-</html>
+    <head>
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    </head>
+    <body>
+        <div x-data="{elo1: '', elo2: ''}">
+            <div>Player 1 Starting ELO</div>
+            <div>
+                <input type="number" x-model="elo1">
+                <span x-text="elo1">
+                </div>
+                <div>Player 2 Starting ELO</div>
+                <div>
+                    <input type="number" x-model="elo2">
+                    <span x-text="elo2">
+                    </div>
+                    <label for="winner">Winner:</label>
+                    <select name="winner" id="winner">
+                        <option value="player1">Player 1</option>
+                        <option value="player2">Player 2</option>
+                        <option value="tie">Tie</option>
+                    </select>
+                    <div x-text="elo1 + elo2"></div>
+                </div>
+            </body>
+        </html>
